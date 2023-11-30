@@ -48,8 +48,16 @@ const { openIssue } = require('./openIssue');
         Core.debug('Created issue')
 
         Core.debug('Waiting for issue to approval')
-        await waitForApproval(octokit, owner, repo, issue.data.number, approvers, approveWords, rejectWords, minimumApprovals, waitInterval, waitTimeout);
+        const approved = await waitForApproval(octokit, owner, repo, issue.data.number, approvers, approveWords, rejectWords, minimumApprovals, waitInterval, waitTimeout);
         Core.debug('Issue closed')
+
+        if (approved) {
+            Core.debug('Issue approved')
+            Core.setOutput('approved', 'true');
+        } else {
+            Core.debug('Issue not approved')
+            Core.setOutput('approved', 'false');
+        }
     } catch (error) {
         Core.error(error);
         Core.error(error.stack);

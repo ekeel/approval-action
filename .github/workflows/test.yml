@@ -26,6 +26,7 @@ jobs:
       run: npm ci
 
     - name: Run Approval Action
+      id: approval
       uses: ./
       with:
         token: ${{ secrets.GH_PAT }}
@@ -39,3 +40,6 @@ jobs:
         rejectWords: 'deny, denied, reject, rejected'
         waitInterval: '1'
         waitTimeout: '5'
+
+    - name: Get the output
+      run: echo "Approved: ${{ steps.approval.outputs.approved }}"

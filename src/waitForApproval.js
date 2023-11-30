@@ -113,6 +113,12 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
             });
 
             Core.setFailed(`Timed out after waiting for ${timeout} minutes for approval.`);
+
+            return false;
+        } else if (haveApproved >= minimumApprovals) {
+            return true;
+        } else {
+            return false;
         }
     } catch (error) {
         Core.error(error);

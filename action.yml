@@ -51,6 +51,11 @@ inputs:
     required: false
     default: 1
 
+outputs:
+  approved:
+    description: 'A boolean indicating whether the workflow was approved.'
+    value: ${{ steps.approval.outputs.approved }}
+
 runs:
   using: 'node20'
   main: 'src/index.js'
