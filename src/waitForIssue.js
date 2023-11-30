@@ -1,5 +1,5 @@
 async function waitForIssueToClose(octokit, owner, repo, issueNumber, waitInterval = 1, timeout = 1440) {
-    let issue = await octokit.issues.get({
+    let issue = await octokit.rest.issues.get({
         owner,
         repo,
         issue_number: issueNumber
