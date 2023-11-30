@@ -1,0 +1,41 @@
+name: 'Approval Action'
+description: 'This action requests an approval to continue the workflow using issue comments.'
+
+inputs:
+  approvers:
+    description: 'A list of GitHub users that are allowed to approve the workflow.'
+    required: true
+
+  minimumApprovals:
+    description: 'The minimum number of approvals required to continue the workflow.'
+    required: true
+
+  issueTitle:
+    description: 'The title of the issue that will be created.'
+    required: true
+
+  issueBody:
+    description: 'The body of the issue that will be created.'
+    required: true
+
+  issueLabels:
+    description: 'A list of labels that will be added to the issue.'
+    required: false
+
+  excludeInitiator:
+    description: 'If true, the user that triggered the workflow will not be able to approve the workflow.'
+    required: false
+
+  approveWords:
+    description: 'A list of words that can be used to approve the workflow.'
+    required: false
+    default: 'approve, approved'
+
+  rejectWords:
+    description: 'A list of words that can be used to disapprove the workflow.'
+    required: false
+    default: 'deny, denied, reject, rejected'
+
+runs:
+  using: 'node20'
+  main: 'src/index.js'
