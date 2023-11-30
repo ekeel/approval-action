@@ -51,7 +51,7 @@ const Github = require('@actions/github');
 
         Core.debug('Creating issue')
         // const issue = await octokit.rest.issues.create(opts);
-        const issue = await octokit.Issue.Create(opts);
+        const issue = await octokit.issues.create(opts);
         Core.debug('Created issue')
     } catch (error) {
         Core.error(error);
