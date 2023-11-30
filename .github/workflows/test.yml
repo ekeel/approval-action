@@ -1,6 +1,13 @@
 name: Test Approval Action
 
-on: [workflow_dispatch,push]
+# on: [workflow_dispatch,push]
+on:
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+    
 
 jobs:
   test:

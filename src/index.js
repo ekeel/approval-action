@@ -50,7 +50,8 @@ const Github = require('@actions/github');
         Core.debug('Created issue options object')
 
         Core.debug('Creating issue')
-        const issue = await octokit.rest.issues.create(opts);
+        // const issue = await octokit.rest.issues.create(opts);
+        const issue = await octokit.Issue.Create(opts);
         Core.debug('Created issue')
     } catch (error) {
         Core.error(error);
