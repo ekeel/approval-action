@@ -14,7 +14,7 @@ const Core = require('@actions/core');
  */
 async function openIssue(octokit, context, issueTitle, issueBody, issueLabels, approvers) {
     try {
-        issueBody = `${issueBody}\n\nApproval Words: ${Core.getInput('approveWords')}\nRejection Words: ${Core.getInput('rejectWords')}\nMinimum Approvals: ${Core.getInput('minimumApprovals')}`
+        issueBody = `${issueBody}\n\n__Approval Words:__ ${Core.getInput('approveWords')}[^1]\n__Rejection Words:__ ${Core.getInput('rejectWords')}[^1]\n__Minimum Approvals:__ ${Core.getInput('minimumApprovals')}[^1]`
         const issue = await octokit.rest.issues.create({
             ...context.repo,
             title: issueTitle,
