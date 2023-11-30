@@ -47,7 +47,7 @@ const { openIssue } = require('./openIssue');
         const issue = await openIssue(octokit, context, issueTitle, issueBody, issueLabels, approvers);
         Core.debug('Created issue')
 
-        Core.debug('Waiting for issue to close')
+        Core.debug('Waiting for issue to approval')
         await waitForApproval(octokit, owner, repo, issue.data.number, approveWords, rejectWords, waitInterval=waitInterval, timeout=waitTimeout);
         Core.debug('Issue closed')
     } catch (error) {
