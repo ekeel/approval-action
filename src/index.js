@@ -19,6 +19,7 @@ const Github = require('@actions/github');
         const approveWords = approveWordsInput.split(',').map(word => word.trim());
         const rejectWords = rejectWordsInput.split(',').map(word => word.trim());
 
+        const context = Github.context;
         const repoContext = Github.context.repo;
         const owner = repoContext.owner;
         const repo = repoContext.repo;
