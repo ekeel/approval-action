@@ -1,4 +1,4 @@
-module.exports.waitForIssueToClose = async function(octokit, owner, repo, issueNumber, waitInterval = 1, timeout = 1440) {
+async function waitForIssueToClose(octokit, owner, repo, issueNumber, waitInterval = 1, timeout = 1440) {
     let issue = await octokit.issues.get({
         owner,
         repo,
@@ -20,3 +20,7 @@ module.exports.waitForIssueToClose = async function(octokit, owner, repo, issueN
         haveWaited += waitInterval;
     }
 }
+
+module.exports = {
+    waitForIssueToClose
+};

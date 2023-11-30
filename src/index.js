@@ -1,6 +1,6 @@
 const Core = require('@actions/core');
 const Github = require('@actions/github');
-const { waitForIssueClose } = require('./waitForIssue');
+const { waitForIssueToClose } = require('./waitForIssue');
 
 (async () => {
     try {
@@ -52,7 +52,7 @@ const { waitForIssueClose } = require('./waitForIssue');
         Core.debug('Created issue')
 
         Core.debug('Waiting for issue to close')
-        await waitForIssueClose(octokit, owner, repo, issue.data.number);
+        await waitForIssueToClose(octokit, owner, repo, issue.data.number);
         Core.debug('Issue closed')
     } catch (error) {
         Core.error(error);
