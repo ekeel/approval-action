@@ -1,6 +1,5 @@
 const Core = require('@actions/core');
 const Github = require('@actions/github');
-const Toolkit = require('actions-toolkit');
 
 (async () => {
     try {
