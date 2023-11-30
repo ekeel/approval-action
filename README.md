@@ -31,7 +31,7 @@ This action is a JavaScript action and runs on Ubuntu, macOS, and Windows.
 ## Usage
 
 ```yaml
-- uses: ekeel/approval-action@v1
+- uses: ekeel/approval-action@v1.0.0
   with:
     # A GitHub token with repo scope.
     # The default secrets.GITHUB_TOKEN does not work with octokit to open/update/close issues.
