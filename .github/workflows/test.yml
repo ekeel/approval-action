@@ -1,0 +1,32 @@
+name: Test Approval Action
+
+on: [workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Approval Action
+      uses: ./
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        approvers: 'ekeel'
+        minimumApprovals: '1'
+        issueTitle: 'Test issue title'
+        issueBody: 'Test issue body'
+        issueLabels: 'label1,label2'
+        excludeInitiator: 'false'
+        approveWords: 'approve, approved'
+        rejectWords: 'deny, denied, reject, rejected'
