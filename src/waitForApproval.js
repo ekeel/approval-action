@@ -10,12 +10,12 @@ const Core = require('@actions/core');
  * @param {string[]} approvers - An array of usernames of the approvers.
  * @param {string[]} approveWords - An array of words that indicate approval.
  * @param {string[]} rejectWords - An array of words that indicate rejection.
- * @param {number} [waitInterval=1] - The interval in minutes to wait before checking for updates.
- * @param {number} [timeout=360] - The timeout in minutes for waiting for approval.
+ * @param {number} waitInterval - The interval in minutes to wait before checking for updates.
+ * @param {number} timeout - The timeout in minutes for waiting for approval.
  * @returns {Promise<void>} - A promise that resolves when the approval process is complete.
  * @throws {Error} - If the approval process times out or encounters an error.
  */
-async function waitForApproval(octokit, owner, repo, issueNumber, approvers, approveWords, rejectWords, minimumApprovals, waitInterval=1, timeout=360) {
+async function waitForApproval(octokit, owner, repo, issueNumber, approvers, approveWords, rejectWords, minimumApprovals, waitInterval, timeout) {
     try {
         let issue = await octokit.rest.issues.get({
             owner,
