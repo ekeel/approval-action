@@ -34,7 +34,7 @@ const Github = require('@actions/github');
             assignees: approvers
         }).filter(([_, v]) => v !== undefined));
 
-        const issue = await octokit.issues.create(opts);
+        const issue = await octokit.rest.issues.create(opts);
     } catch (error) {
         Core.error(error);
         Core.setFailed(error.message);
