@@ -1,6 +1,7 @@
 const Core = require('@actions/core');
 const Github = require('@actions/github');
 const { waitForIssueToClose } = require('./waitForIssue');
+const { openIssue } = require('./openIssue');
 
 (async () => {
     try {
@@ -41,18 +42,11 @@ const { waitForIssueToClose } = require('./waitForIssue');
         Core.debug('Got octokit');
 
         Core.debug('Creating issue')
-        const issue = await octokit.rest.issues.create({
-            ...context.repo,
-            title: issueTitle,
-            body: issueBody,
-            labels: issueLabels && issueLabels.length > 0 ? issueLabels : undefined,
-            assignees: approvers
-        });
-
+        const issue = await openIssue(octokit, context, issueTitle, issueBody, issueLabels, approvers);
         Core.debug('Created issue')
 
         Core.debug('Waiting for issue to close')
-        await waitForIssueToClose(octokit, owner, repo, issue.data.number, approveWords, rejectWords);
+        await waitForIssueToClose(octokit, owner, repo, issue.data.number, approveWords, rejectWords, timeout=480);
         Core.debug('Issue closed')
     } catch (error) {
         Core.error(error);
