@@ -37,3 +37,5 @@ jobs:
         excludeInitiator: 'false'
         approveWords: 'approve, approved'
         rejectWords: 'deny, denied, reject, rejected'
+        waitInterval: '1'
+        waitTimeout: '5'

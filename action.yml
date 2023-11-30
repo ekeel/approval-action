@@ -40,6 +40,16 @@ inputs:
     required: false
     default: 'deny, denied, reject, rejected'
 
+  waitInterval:
+    description: 'The number of minutes to wait before checking for new comments.'
+    required: false
+    default: 1
+
+  waitTimeout:
+    description: 'The number of minutes to wait before timing out.'
+    required: false
+    default: 360
+
 runs:
   using: 'node20'
   main: 'src/index.js'

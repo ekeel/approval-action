@@ -1,6 +1,6 @@
 const Core = require('@actions/core');
 const Github = require('@actions/github');
-const { waitForIssueToClose } = require('./waitForIssue');
+const { waitForApproval } = require('./waitForApproval');
 const { openIssue } = require('./openIssue');
 
 (async () => {
@@ -10,6 +10,8 @@ const { openIssue } = require('./openIssue');
         const issueTitle = Core.getInput('issueTitle');
         const issueBody = Core.getInput('issueBody');
         const excludeInitiator = Core.getInput('excludeInitiator');
+        const waitInterval = Core.getInput('waitInterval');
+        const waitTimeout = Core.getInput('waitTimeout');
 
         const approversInput = Core.getInput('approvers');
         const issueLabelsInput = Core.getInput('issueLabels');
@@ -46,7 +48,7 @@ const { openIssue } = require('./openIssue');
         Core.debug('Created issue')
 
         Core.debug('Waiting for issue to close')
-        await waitForIssueToClose(octokit, owner, repo, issue.data.number, approveWords, rejectWords, timeout=480);
+        await waitForApproval(octokit, owner, repo, issue.data.number, approveWords, rejectWords, waitInterval=waitInterval, timeout=waitTimeout);
         Core.debug('Issue closed')
     } catch (error) {
         Core.error(error);
