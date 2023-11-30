@@ -52,7 +52,7 @@ const { waitForIssueToClose } = require('./waitForIssue');
         Core.debug('Created issue')
 
         Core.debug('Waiting for issue to close')
-        await waitForIssueToClose(octokit, owner, repo, issue.data.number);
+        await waitForIssueToClose(octokit, owner, repo, issue.data.number, approveWords, rejectWords);
         Core.debug('Issue closed')
     } catch (error) {
         Core.error(error);
