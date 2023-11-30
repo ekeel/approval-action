@@ -23,7 +23,7 @@ const Github = require('@actions/github');
         const owner = repoContext.owner;
         const repo = repoContext.repo;
 
-        const octokit = new Github.GitHub(token);
+        const octokit = Github.getOctokit(token);
 
         const opts = Object.fromEntries(Object.entries({
             owner,
@@ -40,9 +40,3 @@ const Github = require('@actions/github');
         Core.setFailed(error.message);
     }
 })();
-
-try {
-  
-} catch (error) {
-    Core.setFailed(error.message);
-}
