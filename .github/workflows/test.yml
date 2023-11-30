@@ -42,4 +42,5 @@ jobs:
         waitTimeout: '5'
 
     - name: Get the output
-      run: echo "Approved: ${{ steps.approval.outputs.approved }}"
+      run: |
+        echo "Approved: ${{ steps.approval.outputs.approved }}"
