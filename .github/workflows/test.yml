@@ -28,7 +28,7 @@ jobs:
     - name: Run Approval Action
       uses: ./
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAT }}
         approvers: 'ekeel'
         minimumApprovals: '1'
         issueTitle: 'Test issue title'
