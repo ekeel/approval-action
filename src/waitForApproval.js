@@ -121,5 +121,5 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
 }
 
 module.exports = {
-    waitForIssueToClose: waitForApproval
+    waitForApproval
 };
