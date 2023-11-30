@@ -69,6 +69,7 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
                                 issue_number: issueNumber,
                                 state: 'closed'
                             });
+                            break;
                         }
                     } else if (rejectWordsFound.length > 0) {
                         haveRejected++;
@@ -87,6 +88,7 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
                                 issue_number: issueNumber,
                                 state: 'closed'
                             });
+                            break;
                         }
                     }
                 }
