@@ -23,6 +23,17 @@ const Github = require('@actions/github');
         const owner = repoContext.owner;
         const repo = repoContext.repo;
 
+        Core.debug(`Issue title: ${issueTitle}`);
+        Core.debug(`Issue body: ${issueBody}`);
+        Core.debug(`Approvers: ${approvers}`);
+        Core.debug(`Issue labels: ${issueLabels}`);
+        Core.debug(`Minimum approvals: ${minimumApprovals}`);
+        Core.debug(`Exclude initiator: ${excludeInitiator}`);
+        Core.debug(`Approve words: ${approveWords}`);
+        Core.debug(`Reject words: ${rejectWords}`);
+        Core.debug(`Owner: ${owner}`);
+        Core.debug(`Repo: ${repo}`);
+
         const octokit = Github.getOctokit(token);
 
         const opts = Object.fromEntries(Object.entries({
