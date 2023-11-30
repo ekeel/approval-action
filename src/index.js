@@ -38,23 +38,11 @@ const Github = require('@actions/github');
         const octokit = Github.getOctokit(token);
         Core.debug('Got octokit');
 
-        Core.debug('Creating issue options object')
-        const opts = Object.fromEntries(Object.entries({
-            owner,
-            repo,
-            issueTitle,
-            body: issueBody,
-            labels: issueLabels && issueLabels.length > 0 ? issueLabels : undefined,
-            assignees: approvers
-        }).filter(([_, v]) => v !== undefined));
-        Core.debug('Created issue options object')
-
         Core.debug('Creating issue')
         // const issue = await octokit.rest.issues.create(opts);
         
         const issue = await octokit.rest.issues.create({
-            owner,
-            repo,
+            ...context.repo,
             title: issueTitle,
             body: issueBody,
             labels: issueLabels && issueLabels.length > 0 ? issueLabels : undefined,
