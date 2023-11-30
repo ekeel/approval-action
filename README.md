@@ -6,17 +6,17 @@ This action uses repository issues to create manual approvals for a workflow run
 
 | Name             | Description                                                             | Required | Default                        |
 | ---------------- | ----------------------------------------------------------------------- | -------- | ------------------------------ |
-| token            | A GitHub token with repo scope.                                         | true     |                                |
-| approvers        | A comma separated list of GitHub usernames that are allowed to approve. | true     |                                |
-| issueTitle       | The title of the issue to create.                                       | true     |                                |
-| issueBody        | The body of the issue to create.                                        | true     |                                |
-| issueLabels      | A comma separated list of labels to add to the issue.                   | false    |                                |
-| excludeInitiator | Exclude the workflow initiator from the list of approvers.              | false    | false                          |
-| approveWords     | A comma separated list of words that will be used to approve.           | false    | approve, approved              |
-| rejectWords      | A comma separated list of words that will be used to reject.            | false    | deny, denied, reject, rejected |
-| waitInterval     | The number of minutes to wait between checks for approvals.             | false    | 1                              |
-| waitTimeout      | The number of minutes to wait before timing out.                        | false    | 5                              |
-| minimumApprovals | The number of approvals/rejections required to continue the workflow.   | false    | 1                              |
+| `token`            | A GitHub token with repo scope.                                         | true     |                                |
+| `approvers`        | A comma separated list of GitHub usernames that are allowed to approve. | true     |                                |
+| `issueTitle`       | The title of the issue to create.                                       | true     |                                |
+| `issueBody`        | The body of the issue to create.                                        | true     |                                |
+| `issueLabels`      | A comma separated list of labels to add to the issue.                   | false    |                                |
+| `excludeInitiator` | Exclude the workflow initiator from the list of approvers.              | false    | false                          |
+| `approveWords`     | A comma separated list of words that will be used to approve.           | false    | approve, approved              |
+| `rejectWords`      | A comma separated list of words that will be used to reject.            | false    | deny, denied, reject, rejected |
+| `waitInterval`     | The number of minutes to wait between checks for approvals.             | false    | 1                              |
+| `waitTimeout`      | The number of minutes to wait before timing out.                        | false    | 5                              |
+| `minimumApprovals` | The number of approvals/rejections required to continue the workflow.   | false    | 1                              |
 
 ## Outputs
 
