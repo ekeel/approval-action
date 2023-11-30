@@ -27,9 +27,11 @@ jobs:
         token: ${{ secrets.GH_PAT }}
         approvers: 'ekeel'
         minimumApprovals: '1'
-        issueTitle: 'Test issue title'
-        issueBody: 'Test issue body'
-        issueLabels: 'label1,label2'
+        issueTitle: 'Manual Test Approval'
+        issueBody: |
+          This is a manual test approval.
+          Please approve or deny this workflow.
+        issueLabels: 'ApprovalAction,ManualApproval'
         excludeInitiator: 'false'
         approveWords: 'approve, approved'
         rejectWords: 'deny, denied, reject, rejected'
