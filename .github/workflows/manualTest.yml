@@ -1,11 +1,6 @@
-name: Test Approval Action
+name: Approval - Manual Test
 
-# on: [workflow_dispatch,push]
 on:
-  push:
-    branches:
-      - main
-
   workflow_dispatch:
 
 
