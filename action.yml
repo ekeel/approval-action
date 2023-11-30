@@ -25,6 +25,7 @@ inputs:
   excludeInitiator:
     description: 'If true, the user that triggered the workflow will not be able to approve the workflow.'
     required: false
+    default: false
 
   approveWords:
     description: 'A list of words that can be used to approve the workflow.'
