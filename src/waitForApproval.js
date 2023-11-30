@@ -115,6 +115,7 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
         }
     } catch (error) {
         Core.error(error);
+        Core.error(error.stack);
         Core.setFailed("Failed to wait for issue comment/timeout.");
     }
 }
