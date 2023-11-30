@@ -1,5 +1,6 @@
 const Core = require('@actions/core');
 const Github = require('@actions/github');
+const Toolkit = require('actions-toolkit');
 
 (async () => {
     try {
@@ -51,7 +52,16 @@ const Github = require('@actions/github');
 
         Core.debug('Creating issue')
         // const issue = await octokit.rest.issues.create(opts);
-        const issue = await octokit.issues.create(opts);
+        
+        const issue = await octokit.rest.issues.create({
+            owner,
+            repo,
+            title: issueTitle,
+            body: issueBody,
+            labels: issueLabels && issueLabels.length > 0 ? issueLabels : undefined,
+            assignees: approvers
+        });
+
         Core.debug('Created issue')
     } catch (error) {
         Core.error(error);
