@@ -55,8 +55,7 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
 
                     if (approveWordsFound.length > 0) {
                         haveApproved++;
-                        Core.info(`Approved by ${lastComment.user.login}.`);
-                        Core.info(`Have ${haveApproved} of ${minimumApprovals} approvals.`);
+                        Core.info(`Approved by ${lastComment.user.login} (${haveApproved} of ${minimumApprovals} approvals).`);
                         if (haveApproved >= minimumApprovals) {
                             await octokit.rest.issues.createComment({
                                 owner,
@@ -73,8 +72,8 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
                         }
                     } else if (rejectWordsFound.length > 0) {
                         haveRejected++;
-                        Core.info(`Rejected by ${lastComment.user.login}.`);
-                        Core.info(`Have ${haveApproved} of ${minimumApprovals} rejections.`);
+                        Core.info(`Rejected by ${lastComment.user.login} (${haveRejected} of ${minimumApprovals} rejections).`);
+
                         if (haveRejected >= minimumApprovals) {
                             await octokit.rest.issues.createComment({
                                 owner,

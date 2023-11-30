@@ -10,10 +10,6 @@ inputs:
     description: 'A list of GitHub users that are allowed to approve the workflow.'
     required: true
 
-  minimumApprovals:
-    description: 'The minimum number of approvals required to continue the workflow.'
-    required: true
-
   issueTitle:
     description: 'The title of the issue that will be created.'
     required: false
@@ -49,6 +45,11 @@ inputs:
     description: 'The number of minutes to wait before timing out.'
     required: false
     default: 360
+
+  minimumApprovals:
+    description: 'The minimum number of approvals required to continue the workflow.'
+    required: false
+    default: 1
 
 runs:
   using: 'node20'
