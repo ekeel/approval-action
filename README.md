@@ -1,6 +1,6 @@
 # Approval V1
 
-This action uses repository issues to create manual approvals for a workflow run.
+This action uses repository issues to create manual approvals for workflow runs.
 
 ## Inputs
 

@@ -1,7 +1,7 @@
 {
   "name": "approval",
   "version": "1.0.0",
-  "description": "This action uses repository issues to create manual approvals for a workflow run.",
+  "description": "This action uses repository issues to create manual approvals for workflow runs.",
   "main": "src/index.js",
   "repository": "https://github.com/ekeel/approval-action",
   "author": {
