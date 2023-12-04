@@ -95,27 +95,31 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
             }
 
             haveWaited += waitInterval;
+
+            Core.info(`Have waited ${haveWaited} minutes.`);
+
+            if (haveWaited >= timeout) {
+                await octokit.rest.issues.createComment({
+                    owner,
+                    repo,
+                    issue_number: issueNumber,
+                    body: `Timed out after waiting for ${timeout} minutes for approval.`
+                });
+    
+                await octokit.rest.issues.update({
+                    owner,
+                    repo,
+                    issue_number: issueNumber,
+                    state: 'closed'
+                });
+    
+                Core.setFailed(`Timed out after waiting for ${timeout} minutes for approval.`);
+    
+                break;
+            }
         }
 
-        if (haveWaited >= timeout) {
-            await octokit.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number: issueNumber,
-                body: `Timed out after waiting for ${timeout} minutes for approval.`
-            });
-
-            await octokit.rest.issues.update({
-                owner,
-                repo,
-                issue_number: issueNumber,
-                state: 'closed'
-            });
-
-            Core.setFailed(`Timed out after waiting for ${timeout} minutes for approval.`);
-
-            return false;
-        } else if (haveApproved >= minimumApprovals) {
+        if (haveApproved >= minimumApprovals) {
             return true;
         } else {
             return false;
