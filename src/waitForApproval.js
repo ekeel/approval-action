@@ -96,7 +96,7 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
 
             haveWaited = Number(haveWaited) + Number(waitInterval);
 
-            Core.info(`Have waited ${Number(haveWaited)} minutes.`);
+            Core.debug(`Have waited ${Number(haveWaited)} minutes.`);
         }
 
         if (Number(haveWaited) >= timeout) {
