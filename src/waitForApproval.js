@@ -29,7 +29,7 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
 
         Core.info(`Waiting for comment on issue #${issueNumber}.`);
 
-        while (issue.data.state !== 'closed' && haveWaited < timeout) {
+        while (issue.data.state !== 'closed' && Number(haveWaited) < Number(timeout)) {
             await new Promise(resolve => setTimeout(resolve, waitInterval * 60 * 1000));
 
             issue = await octokit.rest.issues.get({
@@ -94,32 +94,28 @@ async function waitForApproval(octokit, owner, repo, issueNumber, approvers, app
                 }
             }
 
-            haveWaited += waitInterval;
+            haveWaited = Number(haveWaited) + Number(waitInterval);
 
-            Core.info(`Have waited ${haveWaited} minutes.`);
-
-            if (haveWaited >= timeout) {
-                await octokit.rest.issues.createComment({
-                    owner,
-                    repo,
-                    issue_number: issueNumber,
-                    body: `Timed out after waiting for ${timeout} minutes for approval.`
-                });
-    
-                await octokit.rest.issues.update({
-                    owner,
-                    repo,
-                    issue_number: issueNumber,
-                    state: 'closed'
-                });
-    
-                Core.setFailed(`Timed out after waiting for ${timeout} minutes for approval.`);
-    
-                break;
-            }
+            Core.info(`Have waited ${Number(haveWaited)} minutes.`);
         }
 
-        if (haveApproved >= minimumApprovals) {
+        if (Number(haveWaited) >= timeout) {
+            await octokit.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                body: `Timed out after waiting for ${timeout} minutes for approval.`
+            });
+
+            await octokit.rest.issues.update({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                state: 'closed'
+            });
+
+            Core.setFailed(`Timed out after waiting for ${timeout} minutes for approval.`);
+        }else if (haveApproved >= minimumApprovals) {
             return true;
         } else {
             return false;
