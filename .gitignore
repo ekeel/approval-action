@@ -14,7 +14,6 @@ logs/
 *.log
 
 # Build output
-dist/
 build/
 out/
 
